@@ -1,0 +1,6 @@
+numpy<=1.24.3
+torch==2.0.1
+matplotlib==3.8.0
+gym==0.26.2
+tensorflow==2.13.0
+einops==0.8.0
