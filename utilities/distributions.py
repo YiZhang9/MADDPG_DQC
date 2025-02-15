@@ -1,8 +1,7 @@
 import tensorflow as tf
 import numpy as np
-import maddpg.common.tf_util as U
+import utilities.tf_util as U
 from tensorflow.python.ops import math_ops
-from multiagent.multi_discrete import MultiDiscrete
 from tensorflow.python.ops import nn
 
 class Pd(object):
@@ -122,28 +121,7 @@ class BernoulliPdType(PdType):
     def sample_dtype(self):
         return tf.int32
 
-# WRONG SECOND DERIVATIVES
-# class CategoricalPd(Pd):
-#     def __init__(self, logits):
-#         self.logits = logits
-#         self.ps = tf.nn.softmax(logits)
-#     @classmethod
-#     def fromflat(cls, flat):
-#         return cls(flat)
-#     def flatparam(self):
-#         return self.logits
-#     def mode(self):
-#         return U.argmax(self.logits, axis=1)
-#     def logp(self, x):
-#         return -tf.nn.sparse_softmax_cross_entropy_with_logits(self.logits, x)
-#     def kl(self, other):
-#         return tf.nn.softmax_cross_entropy_with_logits(other.logits, self.ps) \
-#                 - tf.nn.softmax_cross_entropy_with_logits(self.logits, self.ps)
-#     def entropy(self):
-#         return tf.nn.softmax_cross_entropy_with_logits(self.logits, self.ps)
-#     def sample(self):
-#         u = tf.random_uniform(tf.shape(self.logits))
-#         return U.argmax(self.logits - tf.log(-tf.log(u)), axis=1)
+
 
 class CategoricalPd(Pd):
     def __init__(self, logits):
@@ -315,9 +293,6 @@ def make_pdtype(ac_space):
     elif isinstance(ac_space, spaces.Discrete):
         # return CategoricalPdType(ac_space.n)
         return SoftCategoricalPdType(ac_space.n)
-    elif isinstance(ac_space, MultiDiscrete):
-        #return MultiCategoricalPdType(ac_space.low, ac_space.high)
-        return SoftMultiCategoricalPdType(ac_space.low, ac_space.high)
     elif isinstance(ac_space, spaces.MultiBinary):
         return BernoulliPdType(ac_space.n)
     else:

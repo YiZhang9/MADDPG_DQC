@@ -4,7 +4,7 @@ import tensorflow as tf
 import utilities.tf_util as U
 
 from utilities.distributions import make_pdtype
-from MADDPG import AgentTrainer
+from MADDPG.MADDPG import AgentTrainer
 from MADDPG.replay_buffer import ReplayBuffer
 
 
