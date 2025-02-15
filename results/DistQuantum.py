@@ -1,23 +1,44 @@
 import os
 import sys
 from os.path import dirname, abspath
-sys.path.append(dirname(dirname(abspath(__file__))))
 
-from QuantumEnv import EnvUpdater
+# Add the parent directory of the project to Python's module search path
+sys.path.append(dirname(dirname(abspath(__file__))))  # Adds the grandparent directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  # Adds the parent directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "environments")))  # Adds the 'environments' folder
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "MADDPG")))  # Adds MADDPG directory
 
-from agents.actor_critic_agents.A2C import A2C
-from agents.DQN_agents.Dueling_DDQN import Dueling_DDQN
-from agents.actor_critic_agents.DDPG import DDPG
-from agents.actor_critic_agents.SAC_Discrete import SAC_Discrete
-from agents.actor_critic_agents.A3C import A3C
-from agents.policy_gradient_agents.PPO import PPO
-from agents.policy_gradient_agents.REINFORCE import REINFORCE
-from agents.Trainer import Trainer
-from utilities.data_structures.Config import Config
-from agents.DQN_agents.DDQN import DDQN
-from agents.DQN_agents.DDQN_With_Prioritised_Experience_Replay import DDQN_With_Prioritised_Experience_Replay
-from agents.DQN_agents.DQN import DQN
-from agents.DQN_agents.DQN_With_Fixed_Q_Targets import DQN_With_Fixed_Q_Targets
+
+from MADDPG.MADDPG import MADDPGAgentTrainer
+
+# Import EnvUpdater from the QuantumEnv module located in the 'environments' folder
+from QuantumEnv import EnvUpdater  
+
+# Import different reinforcement learning (RL) agent classes from various subdirectories in the project
+
+# Actor-Critic RL agents
+# from agents.actor_critic_agents.A2C import A2C  # Advantage Actor-Critic (A2C)
+# from agents.actor_critic_agents.DDPG import DDPG  # Deep Deterministic Policy Gradient (DDPG)
+# from agents.actor_critic_agents.SAC_Discrete import SAC_Discrete  # Soft Actor-Critic (SAC) for discrete action spaces
+# from agents.actor_critic_agents.A3C import A3C  # Asynchronous Advantage Actor-Critic (A3C)
+
+# # Deep Q-Network (DQN) based agents
+# from agents.DQN_agents.Dueling_DDQN import Dueling_DDQN  # Dueling Double DQN (DDQN)
+# from agents.DQN_agents.DDQN import DDQN  # Double DQN
+# from agents.DQN_agents.DQN import DQN  # Standard Deep Q-Network (DQN)
+# from agents.DQN_agents.DQN_With_Fixed_Q_Targets import DQN_With_Fixed_Q_Targets  # DQN with fixed Q-targets
+# from agents.DQN_agents.DDQN_With_Prioritised_Experience_Replay import DDQN_With_Prioritised_Experience_Replay  # DDQN with Prioritized Experience Replay
+
+# # Policy Gradient RL agents
+# from agents.policy_gradient_agents.PPO import PPO  # Proximal Policy Optimization (PPO)
+# from agents.policy_gradient_agents.REINFORCE import REINFORCE  # REINFORCE policy gradient method
+
+# # Training module
+# from agents.Trainer import Trainer  # Generalized trainer module for training RL agents
+
+# Utility functions and configurations
+from utilities.data_structures.Config import Config  # Configuration file handler for RL experiments
+
 import torch
 
 

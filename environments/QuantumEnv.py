@@ -10,7 +10,7 @@ from Constants import Constants
 #random.seed()  #choose your lucky number here and fix seed
 
 #from QuatumEnvironment_dummy import QuantumEvnironment     #import the distributed quantum computing simulation environment
-from QuatumEnvironment import QuantumEvnironment     #import the distributed quantum computing simulation environment
+from Quantum_Environment import QuantumEvnironment     #import the distributed quantum computing simulation environment
 
 import copy
 import csv
