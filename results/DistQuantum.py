@@ -10,9 +10,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "M
 
 
 from MADDPG.MADDPG import MADDPGAgentTrainer
+from MADDPG.replay_buffer import ReplayBuffer  # Importing ReplayBuffer from its file
 
 # Import EnvUpdater from the QuantumEnv module located in the 'environments' folder
-from QuantumEnv import EnvUpdater  
+from environments.QuantumEnv import EnvUpdater  
 
 # Import different reinforcement learning (RL) agent classes from various subdirectories in the project
 
