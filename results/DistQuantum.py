@@ -8,7 +8,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))) 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "environments")))  # Adds the 'environments' folder
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "MADDPG")))  # Adds MADDPG directory
 
-
 from MADDPG.MADDPG import MADDPGAgentTrainer
 from MADDPG.replay_buffer import ReplayBuffer  # Importing ReplayBuffer from its file
 
