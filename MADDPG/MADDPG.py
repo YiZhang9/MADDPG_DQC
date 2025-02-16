@@ -4,8 +4,8 @@ import tensorflow as tf
 import utilities.tf_util as U
 
 from utilities.distributions import make_pdtype
-from MADDPG.MADDPG import AgentTrainer
-from MADDPG.replay_buffer import ReplayBuffer
+from environments.SystemStateClass import SystemStateClass
+from replay_buffer import ReplayBuffer
 
 
 def discount_with_dones(rewards, dones, gamma):
@@ -109,7 +109,7 @@ def q_train(make_obs_ph_n, act_space_n, q_index, q_func, optimizer, grad_norm_cl
 
         return train, update_target_q, {'q_values': q_values, 'target_q_values': target_q_values}
 
-class MADDPGAgentTrainer(AgentTrainer):
+class MADDPGAgentTrainer(SystemStateClass):
     def __init__(self, name, model, obs_shape_n, act_space_n, agent_index, args, local_q_func=False):
         self.name = name
         self.n = len(obs_shape_n)
